@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8
+moto[s3,textract]>=5
+pillow>=10
+reportlab>=4
