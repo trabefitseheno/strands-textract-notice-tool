@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Notice upload bucket (encrypted, private, 1-day expiry) + least-privilege policy for the Textract tool.
+Resources:
+  NoticeBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: {SSEAlgorithm: AES256}
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-uploads
+            Status: Enabled
+            Prefix: uploads/
+            ExpirationInDays: 1
+          - Id: abort-multipart
+            Status: Enabled
+            AbortIncompleteMultipartUpload: {DaysAfterInitiation: 1}
+  NoticeReaderPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Attach to the identity that runs the agent (user or role).
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: UploadAndReadNotices
+            Effect: Allow
+            Action: [s3:PutObject, s3:GetObject]
+            Resource: !Sub "${NoticeBucket.Arn}/uploads/*"
+          - Sid: Textract
+            Effect: Allow
+            Action: [textract:DetectDocumentText, textract:StartDocumentTextDetection, textract:GetDocumentTextDetection]
+            Resource: "*"
+          - Sid: InvokeNovaLite
+            Effect: Allow
+            Action: [bedrock:InvokeModel, bedrock:InvokeModelWithResponseStream]
+            Resource: "*"
+Outputs:
+  BucketName: {Value: !Ref NoticeBucket}
+  PolicyArn: {Value: !Ref NoticeReaderPolicy}
