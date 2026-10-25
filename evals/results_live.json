@@ -1,0 +1,105 @@
+[
+  {
+    "id": "image_clean",
+    "baseline": {
+      "calls": [],
+      "facts_ok": false,
+      "admitted": false,
+      "error": null,
+      "output": "Certainly! To provide a clear and simple explanation of the notice, I'll need the actual text from the notice you're referring to. Since I don't have the image or the text, I'll give you an example of how to rewrite a typical water shutoff notice in plain language. If you can provide the specific details from the notice, I can tailor the explanation more accurately.\n\n---\n\n**Example Notice Text:**\n\n**Water Service Interruption Notice**\n\n**Date:** October 15, 2023\n\n**To:** All residents of 123 Main Street\n\n**Notice:**\n\nWe will be shutting off the water service to your property on October 20, 2023, from 8:00 AM to 4:00 PM. This is to perform necessary maintenance on the water main line. During this time, you will not have access to running water.\n\n**What You Need to Do:**\n\n1. Make sure to store enough water for drinking and cooking.\n2. Turn off any appliances that use water, such as dishwashers and washing machines.\n3. Inform your neighbors if you share a water meter.\n\n**Contact Information:**\n\nFor more information, please call 555-123-4567.\n\n---\n\n**Plain Language Version:**\n\n**Water Service Interruption Notice**\n\n**Date:** October 15, 2023\n\n**Who This Affects:** All residents of 123 Main Street\n\n**What\u2019s Happening:**\n\nWe need to turn off the water to your home on October 20, 2023, from 8:00 AM to 4:00 PM. We are doing this to fix the water main line. During this time, you won\u2019t have any running water.\n\n**What You Should Do:**\n\n1. Save enough water for drinking and cooking.\n2. Turn off any machines that use water, like dishwashers and washing machines.\n3. Tell your neighbors if you share a water meter with them.\n\n**Contact Information:**\n\nIf you have questions, call 555-123-4567.\n\n---\n\nIf you can provide the exact text or details from the notice, I can give you a more precise explanation.",
+      "verdict": "FAIL (cannot read)"
+    },
+    "with_tool": {
+      "calls": [
+        "read_notice_document"
+      ],
+      "facts_ok": true,
+      "admitted": false,
+      "error": null,
+      "output": "Here is the notice rewritten in plain language:\n\n---\n\n**Town of Riverbend - Public Notice**\n\n**Water Service Interruption**\n\nOn Tuesday, May 12, 2026, water service will be turned off from 8:00 AM to 2:00 PM on Maple Street and Oak Lane.\n\nResidents can get free water at Riverbend Hall.\n\nIf you have questions, call 555-0142.\n\n---\n\n**Who it applies to:**\nResidents living on Maple Street and Oak Lane.\n\n**Deadline:**\nThe water will be shut off on Tuesday, May 12, 2026, from 8:00 AM to 2:00 PM.",
+      "verdict": "PASS"
+    }
+  },
+  {
+    "id": "image_photo",
+    "baseline": {
+      "calls": [],
+      "facts_ok": false,
+      "admitted": false,
+      "error": null,
+      "output": "Sure, I can help with that. However, I don't have the actual text from the image you provided. If you could share the text from the notice, I can rewrite it in plain language for you. Here\u2019s an example of how I would do it if I had the information:\n\n---\n\n**Notice Title: Permit Deadline Reminder**\n\n**Who This Applies To:**\nThis notice is for all residents who have applied for a building permit.\n\n**What You Need to Do:**\nYou need to complete your building permit application by the deadline.\n\n**Details:**\n- **Deadline:** All applications must be submitted by October 15, 2023.\n- **Where to Submit:** Submit your application at the City Hall, located at 123 Main Street.\n- **Contact:** For any questions, call the Permit Office at 555-1234.\n\n**What Happens Next:**\nIf you miss the deadline, your permit application will not be processed until the next application period.\n\n---\n\nPlease provide the text from the notice so I can give you an accurate and helpful summary.",
+      "verdict": "FAIL (cannot read)"
+    },
+    "with_tool": {
+      "calls": [
+        "read_notice_document"
+      ],
+      "facts_ok": true,
+      "admitted": false,
+      "error": null,
+      "output": "<thinking>The tool has successfully extracted the text from the image. I will now rewrite the notice in plain language and provide the relevant details.</thinking>\n\nHere is the notice rewritten in plain language:\n\n**Who it applies to:**\nOwners of properties on Elm Road.\n\n**What you need to do:**\nYou must file Form B-7 by June 30, 2026.\n\n**Where to apply:**\nApply at 14 Council Square, Room 3.\n\n**Cost:**\nThe filing fee is $85.00.\n\n**Late fee:**\nIf you file late, you will have to pay an extra $20.00.",
+      "verdict": "PASS"
+    }
+  },
+  {
+    "id": "pdf",
+    "baseline": {
+      "calls": [],
+      "facts_ok": false,
+      "admitted": true,
+      "error": null,
+      "output": "I'm sorry, but I don't have access to the document \"samples/clinic_hours.pdf.\" If you could provide the text from the notice, I'd be happy to help you rewrite it in plain language. Here\u2019s an example of how I would do it if I had the information:\n\n---\n\n**Original Notice:**\n\nStarting from October 1, 2023, the community health clinic will be open from 8:00 AM to 6:00 PM, Monday through Friday, and from 9:00 AM to 3:00 PM on Saturdays. Walk-ins are welcome, but appointments are recommended. Please bring your insurance card and a photo ID.\n\n**Plain Language Summary:**\n\nStarting October 1, 2023, the health clinic will be open from 8:00 AM to 6:00 PM on weekdays and from 9:00 AM to 3:00 PM on Saturdays. You can come without an appointment, but it\u2019s a good idea to make one. Don\u2019t forget to bring your insurance card and a photo ID.\n\n**Who it applies to:**\nEveryone who plans to visit the health clinic.\n\n**Deadline:**\nStarting October 1, 2023.\n\n---\n\nPlease provide the text from the notice so I can give you an accurate summary.",
+      "verdict": "FAIL (cannot read)"
+    },
+    "with_tool": {
+      "calls": [
+        "read_notice_document"
+      ],
+      "facts_ok": true,
+      "admitted": false,
+      "error": null,
+      "output": "Here is the summarized notice in plain language:\n\n**Notice Title:** Free Flu Vaccination Days\n\n**Who It Applies To:** Residents aged 65 and over.\n\n**What Happens:** You can get a free flu vaccination.\n\n**When:** Saturday, 17 October 2026.\n\n**Time:** From 9:00 AM to 1:00 PM.\n\n**Where:** At the Library Annex.\n\n**What to Bring:** A photo ID.\n\n**Appointment:** No appointment needed.\n\n**Helpline:** 555-0177.\n\nThis notice tells you about free flu shots for people 65 and older. It will happen on October 17, 2026, from 9:00 AM to 1:00 PM at the Library Annex. You need to bring a photo ID, but you don't need to make an appointment. If you have questions, you can call 555-0177.",
+      "verdict": "PASS"
+    }
+  },
+  {
+    "id": "plain_text",
+    "baseline": {
+      "calls": [],
+      "facts_ok": true,
+      "admitted": false,
+      "error": null,
+      "output": "**Notice for Riverbend Residents**\n\n**Water Service Interruption**\n\nOn Tuesday, May 12, 2026, from 8:00 AM to 2:00 PM, water will be turned off on Maple Street and Oak Lane. \n\n**Who it affects:**  \nPeople who live on Maple Street and Oak Lane.\n\n**What to do:**  \nYou can get free water at Riverbend Hall during the time water is off.\n\n**Questions:**  \nIf you have any questions, call 555-0142.",
+      "verdict": "PASS"
+    },
+    "with_tool": {
+      "calls": [],
+      "facts_ok": true,
+      "admitted": false,
+      "error": null,
+      "output": "<thinking>The user has provided the text of the notice. I need to rewrite it in plain language, identify who it applies to, and state any deadlines. The notice is already in plain language, so I will just restate it with a bit more detail.</thinking>\n\nHere is the notice rewritten in plain language:\n\n**Notice for Maple Street and Oak Lane Residents:**\n\nThere will be a water service interruption on Tuesday, 12 May 2026. Water will be turned off from 8:00 AM to 2:00 PM. This affects residents on Maple Street and Oak Lane.\n\nIf you need water during this time, you can get free water at Riverbend Hall.\n\nIf you have any questions, call 555-0142.",
+      "verdict": "PASS"
+    }
+  },
+  {
+    "id": "bad_file",
+    "baseline": {
+      "calls": [],
+      "facts_ok": false,
+      "admitted": true,
+      "error": null,
+      "output": "It looks like you've provided a file path rather than the actual content of the notice. To help you, I need the text of the notice itself. Could you please provide the text from the notice, or share the key details and any important dates or deadlines mentioned in it? This will help me rewrite it in plain language and provide the necessary information. If you can't share the entire notice, just give me the main points, and I'll do my best to assist you.",
+      "verdict": "PASS (reported error)"
+    },
+    "with_tool": {
+      "calls": [
+        "read_notice_document"
+      ],
+      "facts_ok": false,
+      "admitted": true,
+      "error": null,
+      "output": "<thinking>The tool 'read_notice_document' has returned an error because it does not support DOCX files. I need to inform the user that I cannot process DOCX files and ask them to provide the notice in a supported format (PNG, JPG, TIFF, or PDF).</thinking>\n\n<response>I'm sorry, but I cannot process DOCX files. Please provide the notice in a supported format such as PNG, JPG, TIFF, or PDF. Once you do, I can help you rewrite it in plain language.</response>",
+      "verdict": "PASS (reported error)"
+    }
+  }
+]

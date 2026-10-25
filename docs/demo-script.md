@@ -11,7 +11,7 @@ No music (or royalty-free/own only); no third-party logos on screen.
 | 0:10-0:30 | Preview shows the PNG, then terminal: `python -m agent.baseline "Explain this notice: samples/water_shutoff.png"` | "BEFORE: it can't open the image. It asks me to paste the text." Show the reply. |
 | 0:30-0:50 | `cat agent/agent_with_tool.py` (highlight `tools=[read_notice_document]`) | "One new tool, one line of wiring: Amazon Textract behind a Strands @tool." |
 | 0:50-1:20 | `python -m agent.agent_with_tool "Explain this notice: samples/water_shutoff.png"` | "AFTER: same prompt. The agent decides to call the tool, reads the notice and rewrites it. Date and times are exact." |
-| 1:20-1:50 | Same with `samples/clinic_hours.pdf`, then the photo `samples/permit_deadline.png` | "PDF works. The slightly blurry photo returns lower confidence, and the agent warns me to check figures." |
+| 1:20-1:50 | Same with `samples/clinic_hours.pdf`, then the tilted photo `samples/permit_deadline.png` | "PDF works. The slightly tilted, blurred photo still reads correctly: Textract reports 99.6% confidence." |
 | 1:50-2:20 | `python -m agent.agent_with_tool "Explain this notice: <paste plain text>"`; then `python -m evals.run_evals --mode live` | "On plain text it does NOT call the tool. The eval table shows before versus after on the same inputs." |
 | 2:20-2:45 | `docs/architecture.md` diagram, then the 15-line pattern in README | "S3 plus Textract plus Bedrock. The docstring is the router, errors are typed JSON, clients are injectable. Reuse it for any document tool." |
 | 2:45-3:00 | Repo URL on screen | "Code is open source under MIT. Thanks." |

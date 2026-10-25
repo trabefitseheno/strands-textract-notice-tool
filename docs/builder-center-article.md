@@ -37,14 +37,14 @@ extensions, never when the text is already in the message.
 |---|---|---|
 | Photo of a notice | asks for pasted text | reads it, rewrites it, keeps the figures |
 | Scanned PDF | asks for pasted text | same, multi-page aware |
-| Blurry photo | n/a | rewrites **and warns** that figures need checking |
+| Tilted, blurred photo | n/a | reads it correctly (99.6% mean confidence) |
 | Plain text | works | works, tool not called |
 | Corrupt / unsupported file | n/a | explains the problem; invents nothing |
 
 Evaluation: the same five inputs run through both agents, checking that the tool is called only
 for files, that key dates and amounts survive, and that bad input is reported. Offline (scripted
 model + fake Textract) the wiring checks all pass. Live Bedrock + Textract results:
-**<FILL IN after live run: n/5 pass; any failures and what they taught>**.
+**5/5 pass on the final run** (tool called on all 3 files and the bad file, never on plain text; baseline fails all 3 file cases). Honest caveats: my first live run showed 3 'failures' that were bugs in my checker (it didn't accept `May 12, 2026` for `12 May 2026`, and my error-report keyword list was too narrow), not agent errors; I fixed the checker, then re-ran. n=5, temperature 0, one run each.
 
 ## Lessons learned
 

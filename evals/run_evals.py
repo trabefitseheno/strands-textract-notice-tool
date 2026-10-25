@@ -67,6 +67,9 @@ _MONTHS = "January|February|March|April|May|June|July|August|September|October|N
 _US_DATE = re.compile(rf"\b({_MONTHS})\s+(\d{{1,2}}),?\s+(\d{{4}})\b")
 
 
+_MONTH_RE = re.compile(_MONTHS)
+
+
 def normalise(text: str) -> str:
     """Accept 'May 12, 2026' for '12 May 2026'; drop markdown bold and NBSPs."""
     text = text.replace("\u00a0", " ").replace("**", "")
@@ -89,9 +92,10 @@ def run_case(build, case, tmp) -> dict:
         out, calls, err = final_text(agent), tool_calls(agent), None
     except Exception as e:  # noqa: BLE001 - report, don't crash the table
         out, calls, err = "", [], f"{type(e).__name__}: {e}"[:120]
-    norm = out.replace(" ", " ")
+    norm = normalise(re.sub(r"<thinking>.*?</thinking>", "", out, flags=re.S))
     facts_ok = bool(case["facts"]) and all(f in norm for f in case["facts"])
-    admitted = any(w in out.lower() for w in ("can't", "cannot", "couldn't", "unable", "please paste", "please send"))
+    admitted = any(w in out.lower() for w in ("can't", "cannot", "couldn't", "unable", "please paste", "please send", "not supported",
+                                 "unsupported", "sorry", "supported format", "could you please"))
     return {"calls": calls, "facts_ok": facts_ok, "admitted": admitted, "error": err, "output": out}
 
 
@@ -102,9 +106,9 @@ def verdict(case, r, with_tool: bool) -> str:
     if called != (case["file"] and with_tool):
         return "FAIL (tool use)"
     if case.get("expect_error"):
-        return "PASS (reported error)" if r["admitted"] else "FAIL (invented)"
+        return "PASS (reported error)" if r["admitted"] and not _MONTH_RE.search(r["output"]) else "FAIL (invented)"
     if case["file"] and not with_tool:
-        return "FAIL (cannot read)" if r["admitted"] and not r["facts_ok"] else "FAIL"
+        return "FAIL (cannot read)" if not r["facts_ok"] else "FAIL"
     return "PASS" if r["facts_ok"] else "FAIL (facts lost)"
 
 

@@ -15,7 +15,7 @@ photo of a flyer or a scanned PDF, so the agent can't help them.
 
 | Input | Before (no tool) | After (`read_notice_document`) |
 |---|---|---|
-| Photo of a notice (PNG) | "I can't open files, paste the text" | Calls Textract, rewrites, keeps dates and amounts |
+| Photo of a notice (PNG) | Cannot read it; may even invent an example notice | Calls Textract, rewrites, keeps dates and amounts |
 | Scanned PDF | same | same |
 | Plain text | works | works, **tool not called** |
 | Unsupported / corrupt file | n/a | Tool returns a clear error; the agent reports it, invents nothing |
@@ -126,7 +126,22 @@ was given; key dates/amounts survive; bad input is reported, not invented.
 - `--mode dry` uses a scripted stand-in for the model and a fake Textract. It proves the **wiring**
   (schema, result handling, error paths, no tool call on text) but says nothing about the real
   model's judgement. It runs in CI-free, offline form as `tests/test_evals_dry.py`.
-- `--mode live` uses real Bedrock and Textract. Results: _to be filled in after the live run_.
+- `--mode live` uses real Bedrock and Textract. Results (Nova Lite, us-east-1, one run, temperature 0):
+
+```
+case         | BEFORE (baseline)     | AFTER (with tool)       | tool calls (after)
+image_clean  | FAIL (cannot read)    | PASS                    | read_notice_document
+image_photo  | FAIL (cannot read)    | PASS                    | read_notice_document
+pdf          | FAIL (cannot read)    | PASS                    | read_notice_document
+plain_text   | PASS                  | PASS                    | -
+bad_file     | PASS (reported error) | PASS (reported error)   | read_notice_document
+```
+
+Textract mean confidence on the samples: 99.7 (clean PNG), 99.6 (tilted/blurred PNG), 99.9 (PDF). The
+low-confidence warning path is covered by unit tests only, not by a live sample.
+Without the tool, the baseline sometimes **invents an example notice** (we saw a made-up July 2023
+shut-off) instead of just asking for text. Raw output: `evals/results_live.json`. Caveat: the first live run
+had 3 false failures caused by my fact-checker (date format, keyword list); I fixed the checker and re-ran.
 
 ## Limitations
 

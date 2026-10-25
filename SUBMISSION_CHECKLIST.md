@@ -9,12 +9,12 @@
 | 5 | Original, not previously published, NEW repo | New repo `strands-textract-notice-tool`; no code or history from earlier projects; baseline written fresh | Local only; push after you confirm visibility |
 
 Reliability evidence: `pytest` (13 pass: mocked boto3 unit tests + dry eval), `python -m evals.run_evals --mode dry`,
-live: `python -m evals.run_evals --mode live` and `pytest -m integration` (TODO).
+live: `python -m evals.run_evals --mode live` and `pytest -m integration` (done: 5/5, 2 integration tests pass; see README).
 
 Safety/hygiene
 - [x] Secrets scan before first commit (re-run before push; also scan for 12-digit account IDs)
 - [x] LICENSE (MIT, check the copyright holder name), `.gitignore`
 - [x] Synthetic samples only; nothing from work (Pulse/Axian)
-- [ ] Live eval table pasted into README + article
+- [x] Live eval table pasted into README + article
 - [ ] Tear-down run after recording (README "Tear-down")
 - [ ] Repo made public; links tested logged out
