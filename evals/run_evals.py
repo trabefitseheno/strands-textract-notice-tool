@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -60,6 +61,16 @@ class FakeAWS:
 
     def get_document_text_detection(self, JobId, NextToken=None):
         return {"JobStatus": "SUCCEEDED", "DocumentMetadata": {"Pages": 1}, "Blocks": self._blocks(JobId)}
+
+
+_MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
+_US_DATE = re.compile(rf"\b({_MONTHS})\s+(\d{{1,2}}),?\s+(\d{{4}})\b")
+
+
+def normalise(text: str) -> str:
+    """Accept 'May 12, 2026' for '12 May 2026'; drop markdown bold and NBSPs."""
+    text = text.replace("\u00a0", " ").replace("**", "")
+    return _US_DATE.sub(r"\2 \1 \3", text)
 
 
 def tool_calls(agent) -> list[str]:
