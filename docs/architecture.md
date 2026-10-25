@@ -1,5 +1,7 @@
 # Architecture
 
+Editable draw.io version (AWS icons, numbered steps): [architecture.drawio](architecture.drawio). Open it at app.diagrams.net or in draw.io desktop.
+
 ```mermaid
 flowchart LR
     U[User: text, or path / s3:// URI of a photo, scan or PDF] --> A[Strands Agent<br/>Amazon Bedrock · Nova Lite]
