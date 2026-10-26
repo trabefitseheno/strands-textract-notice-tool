@@ -1,6 +1,6 @@
 # Teaching a Strands agent to read a photo of a public notice with Amazon Textract
 
-*Weekend Challenge: Give your Agent a Tool.* Code: <REPO URL> · Demo: <VIDEO URL>
+*Weekend Challenge: Give your Agent a Tool.* Code: https://github.com/trabefitseheno/strands-textract-notice-tool · Demo: https://youtu.be/HCA0k9-kwTA
 
 ## (a) The starting agent
 
